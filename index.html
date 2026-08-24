@@ -1,0 +1,486 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="How to Fish 修改器 v1.7.3——面向 Windows x64 / Unity Mono 版本的中英双语下载与安装页面。">
+  <meta name="theme-color" content="#071822">
+  <meta property="og:title" content="How to Fish 修改器 v1.7.3">
+  <meta property="og:description" content="下载、功能介绍、热键及安装说明。Download, features, hotkeys and installation guide.">
+  <title>How to Fish 修改器 · Trainer v1.7.3</title>
+  <style>
+    :root {
+      --ink: #eaf8f7;
+      --muted: #99b8ba;
+      --deep: #041116;
+      --navy: #071d27;
+      --panel: rgba(12, 39, 49, .78);
+      --line: rgba(155, 221, 215, .14);
+      --aqua: #5de4cf;
+      --aqua-2: #16b7a5;
+      --sand: #ffc96b;
+      --danger: #ff9f8c;
+      --shadow: 0 30px 80px rgba(0, 0, 0, .35);
+      color-scheme: dark;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-width: 320px;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 72% 8%, rgba(38, 191, 173, .17), transparent 34rem),
+        radial-gradient(circle at 5% 42%, rgba(255, 201, 107, .07), transparent 28rem),
+        linear-gradient(180deg, #061820 0%, var(--deep) 48%, #06171e 100%);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif;
+      line-height: 1.65;
+    }
+
+    a { color: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    .shell { width: min(1160px, calc(100% - 40px)); margin: 0 auto; }
+    .skip-link { position: fixed; left: 12px; top: -60px; z-index: 99; padding: 10px 14px; background: var(--aqua); color: #03201d; border-radius: 9px; font-weight: 800; }
+    .skip-link:focus { top: 12px; }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+      background: rgba(4, 17, 22, .78);
+      backdrop-filter: blur(18px);
+    }
+
+    .nav { min-height: 70px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; font-weight: 900; letter-spacing: -.02em; }
+    .brand-mark {
+      width: 38px;
+      aspect-ratio: 1;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(93, 228, 207, .34);
+      border-radius: 12px;
+      color: var(--aqua);
+      background: rgba(93, 228, 207, .08);
+      box-shadow: inset 0 0 20px rgba(93, 228, 207, .05);
+      font-size: 20px;
+    }
+    .brand small { display: block; margin-top: -5px; color: var(--muted); font-size: 9px; letter-spacing: .19em; text-transform: uppercase; }
+
+    .nav-links { display: flex; align-items: center; gap: 24px; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: 14px; font-weight: 700; }
+    .nav-links a:hover, .nav-links a:focus-visible { color: var(--ink); }
+    .nav-download { padding: 9px 15px; border: 1px solid rgba(93, 228, 207, .28); border-radius: 999px; color: var(--aqua) !important; }
+
+    .hero { position: relative; padding: 90px 0 76px; overflow: hidden; }
+    .hero::after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      right: -15vw;
+      bottom: -190px;
+      width: 700px;
+      height: 380px;
+      border: 1px solid rgba(93, 228, 207, .08);
+      border-radius: 50%;
+      transform: rotate(-8deg);
+      box-shadow: 0 0 0 52px rgba(93, 228, 207, .025), 0 0 0 104px rgba(93, 228, 207, .018);
+    }
+    .hero-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(360px, .85fr); align-items: center; gap: 68px; }
+    .eyebrow { margin: 0 0 18px; color: var(--aqua); font-size: 12px; font-weight: 900; letter-spacing: .16em; text-transform: uppercase; }
+    .eyebrow .author { margin-left: 3px; color: var(--muted); font-size: 10px; letter-spacing: .1em; white-space: nowrap; }
+    .eyebrow::before { content: ""; display: inline-block; width: 28px; height: 1px; margin-right: 11px; vertical-align: middle; background: currentColor; }
+    h1 { margin: 0; max-width: 780px; font-size: clamp(48px, 7.2vw, 88px); line-height: .98; letter-spacing: -.065em; }
+    h1 span { display: block; color: var(--aqua); }
+    .hero-subtitle { max-width: 690px; margin: 26px 0 0; color: #c0d8d9; font-size: clamp(17px, 2vw, 20px); }
+    .hero-subtitle .en { display: block; margin-top: 7px; color: var(--muted); font-size: .83em; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin: 34px 0 24px; }
+    .button { display: inline-flex; min-height: 52px; align-items: center; justify-content: center; gap: 10px; padding: 0 21px; border: 1px solid var(--line); border-radius: 13px; text-decoration: none; font-weight: 850; transition: transform .18s ease, border-color .18s ease, background .18s ease; }
+    .button:hover { transform: translateY(-2px); }
+    .button:focus-visible { outline: 3px solid rgba(93, 228, 207, .32); outline-offset: 3px; }
+    .button.primary { color: #03231e; border-color: var(--aqua); background: var(--aqua); box-shadow: 0 14px 38px rgba(22, 183, 165, .22); }
+    .button.primary:hover { background: #7aecd9; }
+    .button.secondary { color: #cde0e0; background: rgba(255,255,255,.025); }
+    .button.secondary:hover { border-color: rgba(93, 228, 207, .35); background: rgba(93, 228, 207, .06); }
+    .download-icon { font-size: 19px; line-height: 1; }
+    .mini-facts { display: flex; flex-wrap: wrap; gap: 9px; }
+    .mini-facts span { padding: 6px 10px; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); font-size: 12px; background: rgba(255,255,255,.018); }
+
+    .control-card {
+      position: relative;
+      padding: 22px;
+      border: 1px solid rgba(145, 220, 214, .18);
+      border-radius: 24px;
+      background: linear-gradient(150deg, rgba(17, 54, 65, .9), rgba(7, 29, 39, .92));
+      box-shadow: var(--shadow);
+      transform: rotate(1.2deg);
+    }
+    .control-card::before { content: ""; position: absolute; inset: 8px; pointer-events: none; border: 1px solid rgba(255,255,255,.025); border-radius: 18px; }
+    .control-head { display: flex; align-items: center; justify-content: space-between; padding: 3px 2px 16px; border-bottom: 1px solid var(--line); }
+    .control-head strong { font-size: 12px; letter-spacing: .14em; }
+    .status { display: inline-flex; align-items: center; gap: 7px; color: var(--aqua); font-size: 11px; font-weight: 800; }
+    .status::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--aqua); box-shadow: 0 0 12px var(--aqua); }
+    .control-row { padding: 18px 2px 14px; }
+    .control-label { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 13px; font-weight: 750; }
+    .control-label span:last-child { color: var(--aqua); font-variant-numeric: tabular-nums; }
+    .track { height: 6px; border-radius: 99px; background: rgba(255,255,255,.08); overflow: hidden; }
+    .track span { display: block; width: var(--fill); height: 100%; border-radius: inherit; background: linear-gradient(90deg, var(--aqua-2), var(--aqua)); box-shadow: 0 0 14px rgba(93,228,207,.28); }
+    .control-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 13px; }
+    .control-stat { padding: 12px 10px; border: 1px solid var(--line); border-radius: 12px; text-align: center; background: rgba(0,0,0,.13); }
+    .control-stat b { display: block; color: var(--sand); font-size: 17px; }
+    .control-stat span { color: var(--muted); font-size: 10px; }
+    .keyline { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 16px; padding: 13px 14px; border-radius: 13px; background: rgba(93,228,207,.07); color: #c8e5e3; font-size: 12px; }
+    kbd { padding: 5px 9px; border: 1px solid rgba(255,255,255,.18); border-bottom-width: 3px; border-radius: 7px; color: var(--ink); background: #102e38; font: 800 11px ui-monospace, SFMono-Regular, Consolas, monospace; }
+
+    section { padding: 84px 0; }
+    .section-kicker { margin: 0 0 9px; color: var(--aqua); font-size: 11px; font-weight: 900; letter-spacing: .18em; text-transform: uppercase; }
+    .section-title { margin: 0; font-size: clamp(32px, 4vw, 48px); line-height: 1.08; letter-spacing: -.045em; }
+    .section-lead { max-width: 680px; margin: 16px 0 0; color: var(--muted); }
+    .section-head { display: flex; align-items: end; justify-content: space-between; gap: 30px; margin-bottom: 34px; }
+
+    .features { border-block: 1px solid rgba(255,255,255,.045); background: rgba(255,255,255,.012); }
+    .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .feature-card { min-height: 210px; padding: 25px; border: 1px solid var(--line); border-radius: 18px; background: rgba(11, 35, 44, .56); }
+    .feature-no { color: var(--aqua); font: 800 11px ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: .1em; }
+    .feature-card h3 { margin: 28px 0 7px; font-size: 19px; letter-spacing: -.02em; }
+    .feature-card p { margin: 0; color: var(--muted); font-size: 13px; }
+    .feature-card .en { display: block; margin-top: 7px; color: #739497; font-size: 11px; }
+
+    .mode-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 14px; }
+    .mode-card { padding: 26px; border: 1px solid var(--line); border-radius: 18px; background: var(--panel); }
+    .mode-card h3 { margin: 0 0 9px; font-size: 21px; }
+    .mode-card p { margin: 0; color: var(--muted); font-size: 13px; }
+    .mode-card.primary-mode { grid-row: span 2; display: flex; flex-direction: column; justify-content: space-between; min-height: 300px; background: linear-gradient(145deg, rgba(25, 85, 84, .36), rgba(11, 35, 44, .74)); }
+    .mode-chip { align-self: flex-start; margin-bottom: 42px; padding: 6px 10px; border-radius: 999px; color: var(--aqua); background: rgba(93,228,207,.09); font-size: 11px; font-weight: 850; }
+    .mode-list { display: grid; grid-template-columns: 1fr 1fr; gap: 9px 20px; margin: 20px 0 0; padding: 0; list-style: none; color: #bad0d1; font-size: 13px; }
+    .mode-list li::before { content: "✓"; margin-right: 7px; color: var(--aqua); }
+    .mode-card.warning { border-color: rgba(255,201,107,.19); }
+    .mode-card.warning h3 { color: var(--sand); }
+
+    .hotkey-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 18px; background: rgba(6, 25, 33, .65); }
+    table { width: 100%; min-width: 720px; border-collapse: collapse; }
+    th, td { padding: 15px 18px; border-bottom: 1px solid var(--line); text-align: left; }
+    th { color: #7ca3a5; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; background: rgba(255,255,255,.02); }
+    td { color: #c8dcdd; font-size: 13px; }
+    tr:last-child td { border-bottom: 0; }
+    td:first-child { width: 96px; }
+    .availability { color: var(--aqua); font-size: 11px; font-weight: 800; }
+    .availability.local { color: #86b9d9; }
+
+    .install { border-block: 1px solid rgba(255,255,255,.045); background: rgba(255,255,255,.012); }
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; counter-reset: step; }
+    .step { position: relative; min-height: 230px; padding: 25px; border: 1px solid var(--line); border-radius: 18px; background: rgba(11,35,44,.55); counter-increment: step; }
+    .step::before { content: "0" counter(step); display: block; margin-bottom: 44px; color: var(--aqua); font: 900 12px ui-monospace, SFMono-Regular, Consolas, monospace; }
+    .step h3 { margin: 0 0 8px; font-size: 19px; }
+    .step p { margin: 0; color: var(--muted); font-size: 13px; }
+    .path { display: block; margin-top: 13px; padding: 10px 12px; overflow-wrap: anywhere; border: 1px solid var(--line); border-radius: 9px; color: #b9d1d2; background: rgba(0,0,0,.18); font: 11px/1.5 ui-monospace, SFMono-Regular, Consolas, monospace; }
+
+    .download-panel { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 34px; padding: 34px; border: 1px solid rgba(93,228,207,.2); border-radius: 22px; background: linear-gradient(130deg, rgba(22, 92, 88, .31), rgba(8, 30, 39, .85)); box-shadow: var(--shadow); }
+    .download-panel h2 { margin: 0 0 7px; font-size: clamp(28px, 4vw, 42px); letter-spacing: -.04em; }
+    .download-panel p { margin: 0; color: var(--muted); }
+    .file-meta { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 16px; color: #a8c3c4; font-size: 12px; }
+    .checksum { grid-column: 1 / -1; margin-top: -10px; padding-top: 20px; border-top: 1px solid var(--line); }
+    .checksum-label { display: flex; justify-content: space-between; gap: 20px; margin-bottom: 8px; color: #77999b; font-size: 11px; font-weight: 800; letter-spacing: .08em; }
+    .checksum code { display: block; overflow-wrap: anywhere; color: #abc6c6; font: 11px/1.7 ui-monospace, SFMono-Regular, Consolas, monospace; }
+    .copy-button { appearance: none; padding: 0; border: 0; color: var(--aqua); background: transparent; cursor: pointer; font: inherit; font-weight: 800; }
+    .copy-button:hover { text-decoration: underline; }
+
+    .notice { margin-top: 18px; padding: 17px 20px; border-left: 3px solid var(--sand); border-radius: 3px 12px 12px 3px; color: #b7cbcc; background: rgba(255,201,107,.055); font-size: 12px; }
+    .notice strong { color: var(--sand); }
+
+    footer { padding: 28px 0 42px; color: #6e9092; font-size: 11px; }
+    .footer-row { display: flex; justify-content: space-between; gap: 25px; padding-top: 24px; border-top: 1px solid var(--line); }
+    footer a { color: #93b0b1; text-decoration: none; }
+    footer a:hover { color: var(--aqua); }
+
+    @media (max-width: 900px) {
+      .hero { padding-top: 66px; }
+      .hero-grid, .mode-grid { grid-template-columns: 1fr; }
+      .control-card { max-width: 580px; transform: none; }
+      .feature-grid, .steps { grid-template-columns: 1fr 1fr; }
+      .mode-card.primary-mode { grid-row: auto; min-height: 270px; }
+      .download-panel { grid-template-columns: 1fr; }
+      .download-panel .button { width: 100%; }
+    }
+
+    @media (max-width: 650px) {
+      .shell { width: min(100% - 28px, 1160px); }
+      .nav { min-height: 62px; }
+      .nav-links a:not(.nav-download) { display: none; }
+      .hero { padding: 54px 0 58px; }
+      h1 { font-size: clamp(43px, 14vw, 64px); }
+      section { padding: 62px 0; }
+      .section-head { display: block; }
+      .feature-grid, .steps { grid-template-columns: 1fr; }
+      .feature-card { min-height: 0; }
+      .mode-list { grid-template-columns: 1fr; }
+      .control-stats { grid-template-columns: 1fr; }
+      .control-stat { display: flex; align-items: center; justify-content: space-between; }
+      .control-stat b { font-size: 14px; }
+      .download-panel { padding: 24px; }
+      .footer-row { display: block; }
+      .footer-row p { margin: 8px 0; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#content">跳到主要内容 / Skip to content</a>
+
+  <header class="site-header">
+    <div class="shell nav">
+      <a class="brand" href="#top" aria-label="返回首页">
+        <span class="brand-mark" aria-hidden="true">⌁</span>
+        <span>How to Fish<small>Community Trainer</small></span>
+      </a>
+      <nav class="nav-links" aria-label="主导航">
+        <a href="#features">功能 Features</a>
+        <a href="#install">安装 Install</a>
+        <a href="#download" class="nav-download">下载 v1.7.3</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="content">
+    <section class="hero" id="top">
+      <div class="shell hero-grid">
+        <div>
+          <p class="eyebrow">Windows x64 · Unity Mono · v1.7.3 <span class="author">· 作者 M1nG</span></p>
+          <h1>把时间留给<span>真正的冒险。</span></h1>
+          <p class="hero-subtitle">
+            为《How to Fish》制作的进程内辅助工具：清晰的模式边界、可调参数，以及随时可还原的控制。
+            <span class="en">An in-process trainer for How to Fish, with clear mode limits, adjustable controls, and reversible changes.</span>
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="./HowToFish-Offline-Trainer-v1.7.3.zip" download>
+              <span class="download-icon" aria-hidden="true">↓</span> 立即下载 · Download
+            </a>
+            <a class="button secondary" href="#install">查看安装方法</a>
+          </div>
+          <div class="mini-facts" aria-label="软件信息">
+            <span>版本 Version 1.7.3</span>
+            <span>大小 Size 0.77 MiB</span>
+            <span>免费 Free</span>
+          </div>
+        </div>
+
+        <aside class="control-card" aria-label="功能控制面板示意">
+          <div class="control-head">
+            <strong>CONTROL DECK / 控制面板</strong>
+            <span class="status">READY</span>
+          </div>
+          <div class="control-row">
+            <div class="control-label"><span>伤害倍率 Damage</span><span>5×</span></div>
+            <div class="track" aria-hidden="true"><span style="--fill:68%"></span></div>
+          </div>
+          <div class="control-row">
+            <div class="control-label"><span>等效血量 Health</span><span>3×</span></div>
+            <div class="track" aria-hidden="true"><span style="--fill:46%"></span></div>
+          </div>
+          <div class="control-row">
+            <div class="control-label"><span>瞄准跟随 Aim tracking</span><span>6×</span></div>
+            <div class="track" aria-hidden="true"><span style="--fill:58%"></span></div>
+          </div>
+          <div class="control-stats">
+            <div class="control-stat"><b>100%</b><span>极品概率 Shiny</span></div>
+            <div class="control-stat"><b>F10</b><span>皮肤品质 Quality</span></div>
+            <div class="control-stat"><b>F11</b><span>镜头 FOV</span></div>
+          </div>
+          <div class="keyline"><span>切换瞄准辅助 / Toggle aim assist</span><kbd>Right Ctrl</kbd></div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="features" id="features">
+      <div class="shell">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">Features / 主要功能</p>
+            <h2 class="section-title">少一点重复，多一点自由。</h2>
+          </div>
+          <p class="section-lead">主要数值均可在面板中细调；关闭功能、按 <kbd>End</kbd> 或卸载插件时会恢复可还原的原始状态。</p>
+        </div>
+        <div class="feature-grid">
+          <article class="feature-card">
+            <span class="feature-no">FEATURE 01</span>
+            <h3>伤害与等效血量</h3>
+            <p>自由设置对动物伤害与玩家等效生命倍率。<span class="en">Adjust animal damage and effective player health multipliers.</span></p>
+          </article>
+          <article class="feature-card">
+            <span class="feature-no">FEATURE 02</span>
+            <h3>极品动物概率</h3>
+            <p>控制新生成极品动物的概率，最高可设为 100%。<span class="en">Control the chance of newly generated shiny creatures, up to 100%.</span></p>
+          </article>
+          <article class="feature-card">
+            <span class="feature-no">FEATURE 03</span>
+            <h3>赌博与皮肤品质</h3>
+            <p>设置单人轮盘胜率，并为四台鱼转盘选择获奖品质。<span class="en">Set offline gambling odds and choose fish roulette reward quality.</span></p>
+          </article>
+          <article class="feature-card">
+            <span class="feature-no">FEATURE 04</span>
+            <h3>武器瞄准辅助</h3>
+            <p>可调跟随速度、锁定角度与移动目标前置量，只锁定无遮挡动物。<span class="en">Tune tracking speed, lock angle and lead time for visible animals.</span></p>
+          </article>
+          <article class="feature-card">
+            <span class="feature-no">FEATURE 05</span>
+            <h3>移动、跳跃与视野</h3>
+            <p>调整移动和跳跃倍率，并将本地镜头 FOV 设置为 55–120。<span class="en">Adjust movement, jump multipliers and local camera FOV from 55–120.</span></p>
+          </article>
+          <article class="feature-card">
+            <span class="feature-no">FEATURE 06</span>
+            <h3>状态与诊断</h3>
+            <p>显示 FPS、帧耗时、补丁状态和实际运行命中次数。<span class="en">View FPS, frame time, patch health and live hit counters.</span></p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="modes-title">
+      <div class="shell">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">Mode Guard / 模式保护</p>
+            <h2 class="section-title" id="modes-title">该开启时开启，该锁定时锁定。</h2>
+          </div>
+        </div>
+        <div class="mode-grid">
+          <article class="mode-card primary-mode">
+            <span class="mode-chip">FULL FEATURES / 完整功能</span>
+            <div>
+              <h3>单人离线存档</h3>
+              <p>角色、战斗、物品和概率功能仅在检测到离线单人存档时开放。进入联机后会自动关闭并还原。</p>
+              <ul class="mode-list">
+                <li>倍率与属性调整</li>
+                <li>概率与转盘覆盖</li>
+                <li>金钱与内置无敌</li>
+                <li>瞄准辅助</li>
+              </ul>
+            </div>
+          </article>
+          <article class="mode-card warning">
+            <h3>好友邀请房房主</h3>
+            <p>取得当前房间全员明确同意并在面板中确认后，房主可使用武器瞄准辅助；公开房和非房主客户端会自动锁定。</p>
+          </article>
+          <article class="mode-card">
+            <h3>联机本地显示</h3>
+            <p>联机时仅保留本机 FOV 与 FPS/帧耗时显示，不写入网络状态。换房后同意确认自动清除。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="features" aria-labelledby="hotkeys-title">
+      <div class="shell">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">Hotkeys / 热键</p>
+            <h2 class="section-title" id="hotkeys-title">不用离开游戏。</h2>
+          </div>
+          <p class="section-lead">按 <kbd>Insert</kbd> 随时显示或隐藏完整控制面板。</p>
+        </div>
+        <div class="hotkey-wrap">
+          <table>
+            <thead><tr><th>热键</th><th>功能 / Function</th><th>可用模式 / Mode</th></tr></thead>
+            <tbody>
+              <tr><td><kbd>Insert</kbd></td><td>显示/隐藏控制面板 · Toggle control panel</td><td><span class="availability local">单人、联机</span></td></tr>
+              <tr><td><kbd>Home</kbd></td><td>显示 FPS 与帧耗时 · FPS and frame time</td><td><span class="availability local">单人、联机</span></td></tr>
+              <tr><td><kbd>F1–F5</kbd></td><td>金钱、无敌、锁定状态、移动与跳跃 · Money, god mode, status, movement and jump</td><td><span class="availability">仅单人</span></td></tr>
+              <tr><td><kbd>F6–F10</kbd></td><td>伤害、血量、极品、赌博与皮肤品质 · Damage, health, shiny, gambling and skin quality</td><td><span class="availability">仅单人</span></td></tr>
+              <tr><td><kbd>F11</kbd></td><td>循环本地镜头 FOV · Cycle local camera FOV</td><td><span class="availability local">单人、联机</span></td></tr>
+              <tr><td><kbd>Right Ctrl</kbd></td><td>切换武器瞄准辅助 · Toggle weapon aim assist</td><td><span class="availability">单人、已同意好友房房主</span></td></tr>
+              <tr><td><kbd>End</kbd></td><td>关闭并还原全部功能 · Disable and restore all features</td><td><span class="availability local">单人、联机</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="install" id="install">
+      <div class="shell">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">Installation / 安装</p>
+            <h2 class="section-title">三步完成安装。</h2>
+          </div>
+          <p class="section-lead">安装前建议备份存档。首次加载 BepInEx 时，游戏启动可能会稍慢。</p>
+        </div>
+        <div class="steps">
+          <article class="step">
+            <h3>下载并解压</h3>
+            <p>下载 ZIP 后完整解压到一个普通文件夹，不要直接在压缩包预览中运行安装器。</p>
+          </article>
+          <article class="step">
+            <h3>运行安装脚本</h3>
+            <p>在解压目录中右键或通过 PowerShell 运行 <code>install.ps1</code>。安装器会自动识别常见路径。</p>
+            <code class="path">powershell -ExecutionPolicy Bypass -File .\install.ps1</code>
+          </article>
+          <article class="step">
+            <h3>从 Steam 启动</h3>
+            <p>正常启动游戏，进入存档后按 <kbd>Insert</kbd> 打开面板。需要卸载时运行 <code>uninstall.ps1</code>。</p>
+          </article>
+        </div>
+        <div class="notice">
+          <strong>兼容性说明 / Compatibility:</strong> 已校验 Unity 6000.4.4f1 与 BepInEx 5.4.23.5。游戏更新后如出现“不兼容”或功能失效，请先卸载并等待适配，不要在新版本上强行使用。
+        </div>
+      </div>
+    </section>
+
+    <section id="download" aria-labelledby="download-title">
+      <div class="shell">
+        <div class="download-panel">
+          <div>
+            <p class="section-kicker">Latest Release / 最新版本</p>
+            <h2 id="download-title">How to Fish Trainer v1.7.3</h2>
+            <p>Windows x64 · Unity Mono · BepInEx 5.4.23.5</p>
+            <div class="file-meta">
+              <span>HowToFish-Offline-Trainer-v1.7.3.zip</span>
+              <span>0.77 MiB</span>
+            </div>
+          </div>
+          <a class="button primary" href="./HowToFish-Offline-Trainer-v1.7.3.zip" download>
+            <span class="download-icon" aria-hidden="true">↓</span> 下载 ZIP · Download
+          </a>
+          <div class="checksum">
+            <div class="checksum-label">
+              <span>SHA-256 文件校验值 / File checksum</span>
+              <button class="copy-button" type="button" data-copy-checksum>复制 / Copy</button>
+            </div>
+            <code id="checksum-value">760ECB46DCE67023EEB1B806628AC8FAFA719609D16CD1379E3625EEA9B529B7</code>
+          </div>
+        </div>
+        <div class="notice">
+          <strong>使用提醒 / Notice:</strong> 本工具主要面向自己的离线存档。私人好友房的瞄准辅助仅限房主，并应在进入房间前取得所有成员明确同意。修改游戏可能违反游戏服务条款，请自行判断并备份存档。
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="shell footer-row">
+      <p>How to Fish Community Trainer · Version 1.7.3</p>
+      <p>非官方社区项目，与游戏开发者及发行商无隶属关系。<br>Unofficial community project. Not affiliated with the game’s developers or publisher.</p>
+    </div>
+  </footer>
+
+  <script>
+    const copyButton = document.querySelector('[data-copy-checksum]');
+    const checksum = document.querySelector('#checksum-value').textContent.trim();
+
+    copyButton.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(checksum);
+        copyButton.textContent = '已复制 / Copied';
+        setTimeout(() => { copyButton.textContent = '复制 / Copy'; }, 1800);
+      } catch {
+        window.prompt('复制校验值 / Copy checksum:', checksum);
+      }
+    });
+  </script>
+</body>
+</html>
