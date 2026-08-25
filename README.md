@@ -21,12 +21,13 @@ This is a convenience trainer made for How to Fish. It is mainly designed to cus
 安装方法 / Installation
 1. 下载并解压 ZIP 文件。
    Download and extract the ZIP archive.
-2. 将解压后的全部文件复制到《How to Fish》游戏根目录。
-   Copy all extracted files into the How to Fish game installation folder.
+2.解压后的文件夹运行 install.ps1
+然后安装器应该会自动寻找 Steam 游戏路径
 3. 从 Steam 正常启动游戏。
    Launch the game normally through Steam.
 4. 进入游戏后打开辅助面板并设置需要的功能。
    Open the trainer panel in-game and configure the desired features.
+如果还是不会安装可以去网页看教程在网页链接里
 注意事项 / Important Notes
 本工具主要为单人和离线游戏体验设计。游戏更新后，部分功能可能暂时失效，需要等待兼容版本。安装前建议备份存档，请勿将本工具用于破坏其他玩家体验或未经同意的多人游戏。
 This tool is primarily designed for single-player and offline gameplay. Some features may temporarily stop working after a game update until a compatible version is released. Backing up your save files before installation is recommended. Do not use this tool to disrupt other players or in multiplayer sessions without everyone’s consent.
